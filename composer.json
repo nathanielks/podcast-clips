@@ -8,5 +8,10 @@
             "email": "nathaniel@fightthecurrent.org"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Podcast_Clips\\": "src"
+        }
+    }
 }

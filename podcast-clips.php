@@ -13,3 +13,10 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+function run_podcast_clips() {
+	$plugin = new Podcast_Clips\Plugin();
+	$plugin->run();
+}
+
+run_podcast_clips();
