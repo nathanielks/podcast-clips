@@ -1,0 +1,12 @@
+{
+    "name": "nathanielks/podcast-clips",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nathaniel Schweinberg",
+            "email": "nathaniel@fightthecurrent.org"
+        }
+    ],
+    "require": {}
+}
