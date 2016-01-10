@@ -1,3 +1,7 @@
 import React from 'react';
 
-export default () => <div>Loaded!</div>;
+export default class App extends React.Component {
+  render() {
+    return <div>Loaded</div>;
+  }
+}

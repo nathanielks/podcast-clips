@@ -1,6 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
-var merge = require('webpack-merge');
+const path = require('path');
+const merge = require('webpack-merge');
+const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -11,47 +11,47 @@ const PATHS = {
 process.env.BABEL_ENV = TARGET;
 
 const common = {
-  entry: [
-    'webpack/hot/dev-server',
-    path.join(PATHS.app, 'main.js')
-  ],
+  entry: PATHS.app,
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.resolve(PATHS.build),
+    path: PATHS.build,
     publicPath: 'https://localhost:8080/', // this enables hot-update.json to be found.
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
-
-    // Set up jsx. This accepts js too thanks to RegExp
-    {
-      test: /\.jsx?$/,
-      // Enable caching for improved performance during development
-      // It uses default OS directory by default. If you need something
-      // more custom, pass a path to it. I.e., babel?cacheDirectory=<path>
-      loaders: ['babel?cacheDirectory'],
-      include: PATHS.app
-    }
-
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel?cacheDirectory'],
+        include: PATHS.app
+      }
     ]
-  },
+  }
 };
 
-// Default configuration
-if(TARGET === 'dev' || !TARGET) {
+if(TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {
       historyApiFallback: true,
-      colors: true,
+      hot: true,
+      inline: true,
       progress: true,
+      colors: true,
 
-      // Display only errors to reduce the amount of output.
-      stats: 'errors-only'
-    }
+      // display only errors to reduce the amount of output
+      stats: 'errors-only',
+
+      // parse host and port from env so this is easy
+      // to customize
+      host: process.env.HOST,
+      port: process.env.PORT
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ]
   });
 }
 
