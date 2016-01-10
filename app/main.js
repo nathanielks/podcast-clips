@@ -1,5 +1,5 @@
-'use strict';
-var component = require('./component.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-console.log(document.body);
-document.body.appendChild(component());
+ReactDOM.render(<App />, document.getElementById('podcast-clips-root'));
