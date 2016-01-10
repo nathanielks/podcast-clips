@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux'
 import configureStore from 'store/configureStore'
-import PodcastClipsRoot from 'components/PodcastClipsRoot.jsx';
+import PodcastClipsRoot from 'containers/PodcastClipsRoot.jsx';
 
 const store = configureStore()
 
