@@ -11,8 +11,25 @@ class PluginPublic {
 	public function register_post_types(){
 
 		$args = array(
+			'label'  => 'Podcast',
+			'labels' => array(
+				'name'          => 'Podcasts',
+				'singular_name' => 'Podcast',
+			),
+			'public'      => true,
+			'supports' =>   array(
+				'title',
+				'editor',
+				'thumbnail',
+			),
+			'has_archive' => 'podcasts'
+		);
+
+		register_post_type( 'podcast', $args );
+
+		$args = array(
 			'label'    => 'Podcast Clips',
-			'public'   => true,
+			'public'   => false,
 			'supports' => array(
 				'title',
 				'custom-fields'

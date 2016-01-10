@@ -39,6 +39,6 @@ class PluginAdmin {
 	}
 
 	public function podcast_clips_meta_box_html(){
-		echo '<div id="app">Loading...</div>';
+		echo '<div id="podcast-clips-root">Loading...</div>';
 	}
 }

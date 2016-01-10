@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import PodcastClipsRoot from './components/PodcastClipsRoot.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<PodcastClipsRoot />, document.getElementById('podcast-clips-root'));
