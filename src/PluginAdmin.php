@@ -18,12 +18,13 @@ class PluginAdmin {
 			return;
 		}
 
+		$file = '/js/build/bundle.js';
+		$url = WPPPT_ROOT_URL . $file;
+		$version = $this->plugin->get_version();
+
 		if('development' === WP_ENV){
 			$url = 'https://localhost:8080/bundle.js';
 			$version = time();
-		} else {
-			$url = plugin_dir_url( __FILE__ ) . '../build/bundle.js';
-			$version = $this->plugin->get_version();
 		}
 
 		wp_enqueue_script( $this->plugin->get_plugin_name(), $url, array(), $version, true );

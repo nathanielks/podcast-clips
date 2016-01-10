@@ -15,6 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define('WPPPT_ROOT_PATH', __DIR__);
+define('WPPPT_ROOT_URL', untrailingslashit(plugin_dir_url(__FILE__)));
+
 function run_WPPPT() {
 	$plugin = new WPPPT\Plugin();
 	$plugin->run();
