@@ -3,6 +3,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       WP Podcast Post Type
+ * Description:       A plugin that adds podcast and podcast_clip post types.
  * Version:           0.0.1
  * Author:            Nathaniel Schweinberg
  * Author URI:        http://fightthecurrent.org/
