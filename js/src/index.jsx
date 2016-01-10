@@ -10,4 +10,5 @@ render(
   <Provider store={store}>
     <PodcastClipsRoot />
   </Provider>,
-  document.getElementById('podcast-clips-root'));
+  document.getElementById('podcast-clips-root')
+);
