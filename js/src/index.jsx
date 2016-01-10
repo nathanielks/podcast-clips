@@ -1,5 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
+import configureStore from 'store/configureStore'
 import PodcastClipsRoot from 'components/PodcastClipsRoot.jsx';
 
-ReactDOM.render(<PodcastClipsRoot />, document.getElementById('podcast-clips-root'));
+const store = configureStore()
+
+render(
+  <Provider store={store}>
+    <PodcastClipsRoot />
+  </Provider>,
+  document.getElementById('podcast-clips-root'));
