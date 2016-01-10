@@ -92,6 +92,7 @@ class Plugin {
 	private function define_admin_hooks() {
 		$admin = new PluginAdmin( $this );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'add_meta_boxes', $admin, 'add_meta_boxes' );
 	}
 	/**
 	 * Register all of the hooks related to the public-facing functionality
