@@ -1,6 +1,6 @@
 <?php
 
-namespace Podcast_Clips;
+namespace WPPPT;
 
 class Loader {
 

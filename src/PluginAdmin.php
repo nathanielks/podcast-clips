@@ -1,6 +1,6 @@
 <?php
 
-namespace Podcast_Clips;
+namespace WPPPT;
 
 class PluginAdmin {
 
@@ -31,7 +31,7 @@ class PluginAdmin {
 
 	public function add_meta_boxes(){
 		add_meta_box(
-			'podcast_clips',
+			'Podcast Clips',
 			__( 'Podcast Clips', 'wppc' ),
 			array( $this, 'podcast_clips_meta_box_html' ),
 			'podcast'

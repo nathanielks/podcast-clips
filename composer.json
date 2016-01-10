@@ -1,5 +1,5 @@
 {
-    "name": "nathanielks/podcast-clips",
+    "name": "nathanielks/wp-podcast-post-type",
     "type": "wordpress-plugin",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Podcast_Clips\\": "src"
+            "WPPPT\\": "src"
         }
     }
 }
