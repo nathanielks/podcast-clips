@@ -18,16 +18,21 @@ class PluginAdmin {
 			return;
 		}
 
-		$file = '/js/build/bundle.js';
-		$url = WPPPT_ROOT_URL . $file;
+		$url = WPPPT_ROOT_URL;
+		$dir = '/js/build/';
+		$files = ['vendors', 'bundle'];
 		$version = $this->plugin->get_version();
+		$handle = $this->plugin->get_plugin_name();
 
 		if('development' === WP_ENV){
-			$url = 'https://localhost:8080/bundle.js';
+			$url = 'https://localhost:8080';
 			$version = time();
 		}
 
-		wp_enqueue_script( $this->plugin->get_plugin_name(), $url, array(), $version, true );
+		foreach($files as $file){
+			wp_enqueue_script( "${handle}-${file}", "${url}${dir}${file}.js", array(), $version, true );
+		}
+
 	}
 
 	public function add_meta_boxes(){

@@ -1,6 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const node_modules_dir = path.resolve(__dirname, 'node_modules');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -11,14 +12,17 @@ const PATHS = {
 process.env.BABEL_ENV = TARGET;
 
 const common = {
-  entry: PATHS.app,
+  entry: {
+    app: PATHS.app,
+    vendors: ['react']
+  },
   resolve: {
     extensions: ['', '.js', '.jsx'],
     root: path.resolve(PATHS.app)
   },
   output: {
     path: PATHS.build,
-    publicPath: 'https://localhost:8080/', // this enables hot-update.json to be found.
+    publicPath: 'https://localhost:8080/js/build/', // this enables hot-update.json to be found.
     filename: 'bundle.js'
   },
   module: {
@@ -26,10 +30,14 @@ const common = {
       {
         test: /\.jsx?$/,
         loaders: ['babel?cacheDirectory'],
+        exclude: [node_modules_dir],
         include: PATHS.app
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+  ]
 };
 
 if(TARGET === 'start' || !TARGET) {
