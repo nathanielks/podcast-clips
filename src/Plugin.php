@@ -104,6 +104,7 @@ class Plugin {
 	private function define_public_hooks() {
 		$public = new PluginPublic( $this );
 		$this->loader->add_action( 'init', $public, 'register_post_types' );
+		$this->loader->add_action( 'init', $public, 'register_tags' );
 		$this->loader->add_action( 'init', $public, 'connect_post_types' );
 	}
 
