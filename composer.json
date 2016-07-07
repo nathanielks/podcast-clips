@@ -8,7 +8,9 @@
             "email": "nathaniel@fightthecurrent.org"
         }
     ],
-    "require": {},
+    "require": {
+      "wpackagist-plugin/meta-box": "~4.8"
+    },
     "autoload": {
         "psr-4": {
             "WPPPT\\": "src"
