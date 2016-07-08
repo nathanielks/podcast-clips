@@ -4,8 +4,15 @@ namespace WPPPT;
 
 class PluginAdmin {
 
-    public function __construct( $plugin ){
+    protected $plugin;
+    protected $loader;
+
+    public function __construct( $plugin, $loader ){
         $this->plugin = $plugin;
+        $this->loader = $loader;
+        $this->menu_pages = array(
+            'BulkUpload' => new Admin\Pages\BulkUpload
+        );
     }
 
     /**
@@ -14,8 +21,20 @@ class PluginAdmin {
      * @since    1.0.0
      */
     public function enqueue_scripts() {
-        if('podcast' !== get_post_type()){
-            return;
+        foreach($this->menu_pages as $page){
+            $page->enqueue_scripts();
+        }
+    }
+
+    public function add_menu_pages(){
+        foreach($this->menu_pages as $page){
+            $page->add_menu_pages();
+        }
+    }
+
+    public function process_forms(){
+        foreach($this->menu_pages as $page){
+            $page->process_form();
         }
     }
 

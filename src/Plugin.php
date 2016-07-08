@@ -78,7 +78,8 @@ class Plugin {
 	 * @since    0.0.1
 	 * @access   private
 	 */
-	private function load_dependencies() {
+    private function load_dependencies() {
+        require_once('includes/functions.php');
 		$this->loader = new Loader;
 	}
 
@@ -90,9 +91,10 @@ class Plugin {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$admin = new PluginAdmin( $this );
+		$admin = new PluginAdmin( $this, $this->loader );
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'add_meta_boxes', $admin, 'add_meta_boxes' );
+		$this->loader->add_action( 'admin_init', $admin, 'process_forms' );
+        $this->loader->add_filter( 'admin_menu', $admin, 'add_menu_pages' );
         $this->loader->add_filter( 'rwmb_meta_boxes', $admin, 'define_meta_boxes' );
 	}
 	/**
@@ -103,7 +105,7 @@ class Plugin {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-		$public = new PluginPublic( $this );
+		$public = new PluginPublic( $this, $this->loader );
 		$this->loader->add_action( 'init', $public, 'register_post_types' );
 		$this->loader->add_action( 'init', $public, 'register_tags' );
 		$this->loader->add_action( 'init', $public, 'connect_post_types' );
