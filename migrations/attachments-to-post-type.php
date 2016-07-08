@@ -1,6 +1,6 @@
 <?php
 
-require_once 'common.php';
+require_once 'functions.php';
 
 migrate_attachments_to_post_type(['attachment_to_podcast', 'attachment_to_product']);
 
