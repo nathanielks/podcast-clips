@@ -29,8 +29,8 @@ class PluginAdmin {
             'post_types' => 'podcast_clip',
             'fields'     => array(
                 array(
-                    'id'   => 'file_upload',
-                    'name' => __( 'File Upload', 'textdomain' ),
+                    'id'   => 'attachment_id',
+                    'name' => __( 'Attached Clip', 'textdomain' ),
                     'type' => 'file_advanced',
                 ),
             ),
