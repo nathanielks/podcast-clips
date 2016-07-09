@@ -1,5 +1,6 @@
 <?php
 
+namespace WPPPT;
 require_once 'functions.php';
 
 migrate_attachments_to_post_type(['attachment_to_podcast', 'attachment_to_product']);
@@ -26,9 +27,6 @@ function migrate_attachments_to_post_type($connection_types){
 
         // copy over tags
         copy_tags_from_old_to_new($post->ID, $new_post_id);
-
-        // attach media file
-        update_post_meta($new_post_id, 'attachment_id', $post->ID);
     }
 }
 

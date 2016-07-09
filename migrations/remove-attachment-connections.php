@@ -1,5 +1,6 @@
 <?php
 
+namespace WPPPT;
 require_once 'functions.php';
 
 remove_attachment_connections(['attachment_to_podcast', 'attachment_to_product']);

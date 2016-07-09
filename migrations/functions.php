@@ -1,5 +1,7 @@
 <?php
 
+namespace WPPPT;
+
 function get_connected_results($type){
     global $wpdb;
 
@@ -47,7 +49,14 @@ function create_new_post($old_post){
     foreach($unset as $key){
         unset($new_args[$key]);
     }
-    return wp_insert_post($new_args);
+
+    $new_post_id = wp_insert_post($new_args);
+    if(is_wp_error($new_post_id)){
+        throw new Exception($new_post_id->get_error_message());
+    }
+
+    update_post_meta($new_post_id, 'attachment_id', $old_post->ID);
+    return $new_post_id;
 }
 
 function connect_new_post_to_connected($post_id, $connect_to){

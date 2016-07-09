@@ -91,11 +91,8 @@ class Plugin {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$admin = new PluginAdmin( $this, $this->loader );
-		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_init', $admin, 'process_forms' );
-        $this->loader->add_filter( 'admin_menu', $admin, 'add_menu_pages' );
-        $this->loader->add_filter( 'rwmb_meta_boxes', $admin, 'define_meta_boxes' );
+        $admin = new PluginAdmin( $this, $this->loader );
+		$this->loader->add_action( 'init', $admin, 'init' );
 	}
 	/**
 	 * Register all of the hooks related to the public-facing functionality
