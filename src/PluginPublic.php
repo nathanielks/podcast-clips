@@ -77,18 +77,6 @@ class PluginPublic {
 					'to' => 'product'
                 ) );
 
-				p2p_register_connection_type( array(
-					'name' => 'attachment_to_podcast',
-					'from' => 'attachment',
-					'to' => 'podcast'
-				) );
-
-				p2p_register_connection_type( array(
-					'name' => 'attachment_to_product',
-					'from' => 'attachment',
-					'to' => 'product'
-                ) );
-
 			});
 		}
 	}

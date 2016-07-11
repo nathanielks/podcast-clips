@@ -20,12 +20,15 @@ function migrate_attachments_to_post_type($connection_types){
         $post = get_post();
 
         // create post
+        echo "Processing {$post->post_title}\n";
         $new_post_id = create_new_post($post);
 
         // connect new post to relation type
+        echo "Connecting {$post->post_title} to posts\n";
         connect_new_post_to_connected($new_post_id, $aggregated[$post->ID]);
 
         // copy over tags
+        echo "Copying tags for {$post->post_title}\n";
         copy_tags_from_old_to_new($post->ID, $new_post_id);
     }
 }

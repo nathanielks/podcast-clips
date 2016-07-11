@@ -32,7 +32,7 @@ function aggregate_results($results){
 }
 
 function get_query_for_post_ids($ids){
-    return new WP_Query(array(
+    return new \WP_Query(array(
         'post__in' => $ids,
         'post_type' => 'attachment',
         'posts_per_page' => -1,
