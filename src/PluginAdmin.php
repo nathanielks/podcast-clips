@@ -4,47 +4,43 @@ namespace WPPPT;
 
 class PluginAdmin {
 
-	public function __construct( $plugin ){
-		$this->plugin = $plugin;
-	}
+    protected $plugin;
+    protected $loader;
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
-		if('podcast' !== get_post_type()){
-			return;
-		}
+    public function __construct( $plugin ){
+        $this->plugin = $plugin;
+        $this->menu_pages = array(
+            'BulkUpload' => new Admin\Pages\BulkUpload($plugin)
+        );
+    }
 
-		$url = WPPPT_ROOT_URL;
-		$dir = '/js/build/';
-		$files = ['vendors', 'bundle'];
-		$version = $this->plugin->get_version();
-		$handle = $this->plugin->get_plugin_name();
+    public function init(){
+        foreach($this->menu_pages as $page){
+            $page->init();
+        }
 
-		if('development' === WP_ENV){
-			$url = 'https://localhost:8080';
-			$version = time();
-		}
+        add_filter( 'rwmb_meta_boxes', array($this, 'define_meta_boxes' ));
+    }
 
-		foreach($files as $file){
-			wp_enqueue_script( "${handle}-${file}", "${url}${dir}${file}.js", array(), $version, true );
-		}
+    /**
+     * Register the JavaScript for the admin area.
+     *
+     * @since    1.0.0
+     */
+    public function enqueue_scripts() {}
 
-	}
-
-	public function add_meta_boxes(){
-		add_meta_box(
-			'Podcast Clips',
-			__( 'Podcast Clips', 'wppc' ),
-			array( $this, 'podcast_clips_meta_box_html' ),
-			'podcast'
-		);
-	}
-
-	public function podcast_clips_meta_box_html(){
-		echo '<div id="podcast-clips-root">Loading...</div>';
-	}
+    public function define_meta_boxes($meta_boxes) {
+        $meta_boxes[] = array(
+            'title' => __('Podcast Clips Meta'),
+            'post_types' => 'podcast_clip',
+            'fields'     => array(
+                array(
+                    'id'   => 'attachment_id',
+                    'name' => __( 'Attached Clip', 'textdomain' ),
+                    'type' => 'file_advanced',
+                ),
+            ),
+        );
+        return $meta_boxes;
+    }
 }
