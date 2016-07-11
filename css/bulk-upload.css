@@ -1,0 +1,9 @@
+.select2-container {
+  min-width: 400px;
+  font-size: 1.375em;
+  font-weight: normal;
+}
+
+#wpppt-dnd-uploader {
+  display: none;
+}

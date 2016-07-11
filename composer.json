@@ -1,5 +1,5 @@
 {
-    "name": "nathanielks/podcast-clips",
+    "name": "nathanielks/wp-podcast-post-type",
     "type": "wordpress-plugin",
     "license": "MIT",
     "authors": [
@@ -8,10 +8,12 @@
             "email": "nathaniel@fightthecurrent.org"
         }
     ],
-    "require": {},
+    "require": {
+      "wpackagist-plugin/meta-box": "~4.8"
+    },
     "autoload": {
         "psr-4": {
-            "Podcast_Clips\\": "src"
+            "WPPPT\\": "src"
         }
     }
 }
