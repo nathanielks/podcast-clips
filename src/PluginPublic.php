@@ -31,7 +31,9 @@ class PluginPublic {
 			'label'  => 'Podcast Clip',
 			'labels' => array(
 				'name'          => 'Podcast Clips',
-				'singular_name' => 'Podcast Clip',
+                'singular_name' => 'Podcast Clip',
+                'edit_item' => 'Edit Podcast Clip',
+                'add_new_item' => 'Add New Podcast Clip',
 			),
 			'public'      => true,
 			'supports' =>   array(

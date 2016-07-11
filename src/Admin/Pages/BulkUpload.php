@@ -22,7 +22,10 @@ class BulkUpload {
 
     public function enqueue_scripts(){
         wp_enqueue_script('plupload-handlers');
-        wp_enqueue_script('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/js/bulk-upload.js', array('jquery'), time());
+        wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css', array('jquery'), '4.0.3');
+        wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js', array('jquery'), '4.0.3');
+        wp_enqueue_script('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/js/bulk-upload.js', array('jquery', 'select2'), time());
+        wp_enqueue_style('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/css/bulk-upload.css', array('select2'), time());
     }
 
     public function add_menu_pages(){
@@ -46,7 +49,7 @@ class BulkUpload {
         check_admin_referer($this->nonce_name);
 
         try {
-            $attachment_id = media_handle_upload( 'async-upload', 0 );
+            $attachment_id = media_handle_upload( 'async-upload', 0, [], ['mimes' => ['mp3|m4a' => 'audio/mpeg'], 'action' => $this->action] );
 
             $this->exception_if_error($attachment_id);
 
@@ -65,18 +68,18 @@ class BulkUpload {
 
             echo apply_filters( 'wpppt_async_upload', $attachment_id );
 
-        } catch( Exception $e ){
+        } catch( \Exception $e ){
             echo '<div class="error-div error">
             <a class="dismiss" href="#" onclick="jQuery(this).parents(\'div.media-item\').slideUp(200, function(){jQuery(this).remove();});">' . __('Dismiss') . '</a>
             <strong>' . sprintf(__('&#8220;%s&#8221; has failed to upload.'), esc_html($_FILES['async-upload']['name']) ) . '</strong><br />' .
-            esc_html($e->get_message()) . '</div>';
+            esc_html($e->getMessage()) . '</div>';
             exit;
         }
     }
 
     protected function exception_if_error($var){
         if ( is_wp_error($var) ) {
-            throw new Exception($var->get_error_message());
+            throw new \Exception($var->get_error_message());
         }
     }
 
