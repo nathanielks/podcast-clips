@@ -22,10 +22,11 @@ class BulkUpload {
 
     public function enqueue_scripts(){
         wp_enqueue_script('plupload-handlers');
-        wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css', array('jquery'), '4.0.3');
-        wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js', array('jquery'), '4.0.3');
-        wp_enqueue_script('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/js/bulk-upload.js', array('jquery', 'select2'), time());
-        wp_enqueue_style('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/css/bulk-upload.css', array('select2'), time());
+        wp_enqueue_script('wpppt-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', array('jquery'), '4.0.3');
+        wp_enqueue_script('wpppt-admin-bulk-upload', WPPPT_PLUGIN_URL . '/js/bulk-upload.js', array('jquery', 'wpppt-select2'), '0.1.0');
+
+        wp_enqueue_style('wpppt-select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css', array(), '4.0.3');
+        wp_enqueue_style('wpppt-admin-bulk-upload-css', WPPPT_PLUGIN_URL . '/css/bulk-upload.css', array('wpppt-select2-css'), '0.1.0');
     }
 
     public function add_menu_pages(){
