@@ -55,7 +55,10 @@ function create_new_post($old_post){
         throw new Exception($new_post_id->get_error_message());
     }
 
+    $enclosure_key = apply_filters('wpppt_powerpress_enclosure_key', '_podcast-clips:enclosure', $old_post->ID, $new_post_id);
+
     update_post_meta($new_post_id, 'attachment_id', $old_post->ID);
+    update_post_meta($new_post_id, $enclosure_key, wp_get_attachment_url($old_post->ID));
     return $new_post_id;
 }
 
